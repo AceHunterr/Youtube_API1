@@ -1,3 +1,4 @@
+# Youtube Duration finder in Playlist : Enter playlist link and returns the total duration of playlist
 from time import time
 from googleapiclient.discovery import build
 import re
@@ -17,7 +18,7 @@ minutes_pattern = re.compile(r'(\d+)M')
 seconds_pattern = re.compile(r'(\d+)S')
 
 total_seconds = 0
-nextPageToken = None
+
 while True:
     pl_request = youtube.playlistItems().list(
         part = 'contentDetails',
