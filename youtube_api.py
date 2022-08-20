@@ -3,9 +3,14 @@ from googleapiclient.discovery import build
 import re
 from datetime import timedelta
 
+
 api_key = "AIzaSyCSdtXwwN3yrfIl0gwle_yG8ifI-mlx25A"
 
 youtube = build('youtube','v3', developerKey=api_key)
+
+playlist_link = "https://youtube.com/playlist?list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS"
+x = re.split("list=", playlist_link)
+playlist_id = x[-1]
 
 hours_pattern = re.compile(r'(\d+)H')
 minutes_pattern = re.compile(r'(\d+)M')
@@ -16,7 +21,7 @@ nextPageToken = None
 while True:
     pl_request = youtube.playlistItems().list(
         part = 'contentDetails',
-        playlistId = "PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7",
+        playlistId = playlist_id,
         maxResults = 50,
         pageToken = nextPageToken
     )
